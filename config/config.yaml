@@ -1,0 +1,7 @@
+preprocess:
+  block_window_size: 4
+  
+redis:
+  addr: "localhost:6379"
+  password: ""
+  db: 0

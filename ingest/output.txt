@@ -1,0 +1,4 @@
+Query phonetic: A-AR-NT-AR-T-FT
+Found 3738 phonetic keys to check...
+
+No phonetic matches found.
