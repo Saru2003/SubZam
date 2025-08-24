@@ -26,11 +26,18 @@ func main() {
                 closestHash := GenerateClosestHash(chunk.Cleaned)
                 phoneticHash := GeneratePhoneticHash(chunk.Cleaned)
                 chunk.Phonetic = phoneticHash
-                // embedding := GenerateEmbedding(chunk.Cleaned)
+                embedding, err := GenerateEmbedding(chunk.Cleaned)
 
                 StoreRedis(closestHash, phoneticHash, chunk, title, year)
                 // StoreRedisPhonetic(phoneticHash, chunk, title, year)
-                // StorePostgresEmbedding(embedding, chunk, title, year)
+                if err != nil {
+                    log.Println("Embedding error:", err)
+                } else {
+                    err = StorePostgresEmbedding(embedding, chunk, title, year)
+                    if err != nil {
+                        log.Println("Postgres store error:", err)
+                    }
+                }
             }
         }
         return nil

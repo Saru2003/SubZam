@@ -1,6 +1,16 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
-	// SearchClosest("we ar not ear to fight", 17)
-	SearchPhonetic("we ar not ear to fight", 3)
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: go run . \"your search query\"")
+		return
+	}
+
+	query := os.Args[1]
+	SearchWithFallback(query)
 }
